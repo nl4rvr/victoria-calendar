@@ -1,11 +1,11 @@
 const CACHE_NAME = 'victoria-calendar-v2';
 const ASSETS = [
-    '/',
-    '/index.html',
-    '/manifest.json',
-    '/icons/icon-192.png',
-    '/icons/icon-512.png',
-    '/icons/apple-touch-icon.png'
+    '/victoria-calendar/',
+    '/victoria-calendar/index.html',
+    '/victoria-calendar/manifest.json',
+    '/victoria-calendar/icons/icon-192.png',
+    '/victoria-calendar/icons/icon-512.png',
+    '/victoria-calendar/icons/apple-touch-icon.png'
 ];
 
 self.addEventListener('install', event => {
