@@ -9,18 +9,17 @@
 
     <title>Victoria Calendar</title>
 
-    <!-- PWA (абсолютные пути – замените victoria-calendar на имя вашего репозитория) -->
+    <!-- PWA (замените victoria-calendar на имя вашего репозитория) -->
     <link rel="manifest" href="/victoria-calendar/manifest.json" />
     <link rel="apple-touch-icon" href="/victoria-calendar/icons/apple-touch-icon.png" />
 
-    <!-- Firebase (модули) -->
+    <!-- Firebase -->
     <script type="importmap">
         {
             "imports": {
                 "firebase/app": "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js",
                 "firebase/auth": "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js",
-                "firebase/firestore": "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js",
-                "firebase/messaging": "https://www.gstatic.com/firebasejs/11.0.1/firebase-messaging.js"
+                "firebase/firestore": "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js"
             }
         }
     </script>
@@ -285,7 +284,7 @@
             box-shadow: 0 4px 20px rgba(124, 77, 255, 0.15);
         }
 
-        /* ========== СИМПТОМЫ (расширенные) ========== */
+        /* ========== СИМПТОМЫ (с эмодзи) ========== */
         .symptom-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
@@ -315,7 +314,7 @@
             flex-shrink: 0;
         }
 
-        /* ========== ВАГИНАЛЬНЫЕ ВЫДЕЛЕНИЯ ========== */
+        /* ========== ВЫДЕЛЕНИЯ ========== */
         .discharge-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
@@ -479,8 +478,8 @@
         /* ========== СТАТИСТИКА ========== */
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-            gap: 12px;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 16px;
         }
         .stat-item {
             background: rgba(255, 255, 255, 0.02);
@@ -504,6 +503,54 @@
             color: var(--text-secondary);
             display: block;
             margin-top: 4px;
+        }
+        .stat-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 6px;
+        }
+        .stat-indicator.green {
+            background: #4caf50;
+        }
+        .stat-indicator.yellow {
+            background: #ff9800;
+        }
+        .stat-indicator.red {
+            background: #f44336;
+        }
+        .stat-chart {
+            margin-top: 12px;
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        .stat-chart .bar {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 30px;
+        }
+        .stat-chart .bar .fill {
+            width: 20px;
+            border-radius: 4px 4px 0 0;
+            background: var(--primary-light);
+            transition: height 0.3s;
+            min-height: 4px;
+        }
+        .stat-chart .bar .label {
+            font-size: 0.6rem;
+            color: var(--text-secondary);
+            margin-top: 4px;
+            text-align: center;
+            word-break: break-all;
+        }
+        .stat-chart .bar .value {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--text);
         }
 
         /* ========== СОВЕТЫ ========== */
@@ -877,7 +924,7 @@
             margin-top: 8px;
         }
 
-        /* ========== МИГРЕНЬ ФОРМА ========== */
+        /* ========== МИГРЕНЬ ========== */
         .migraine-form {
             display: flex;
             flex-direction: column;
@@ -1192,7 +1239,7 @@
             <!-- СЕКЦИИ -->
             <main>
 
-                <!-- 1. Ежедневный опрос -->
+                <!-- 1. Ежедневный опрос (с эмодзи) -->
                 <section id="section-daily" class="card fade-in">
                     <h2 class="card-title">📝 Как вы себя чувствуете?</h2>
                     <div style="display:flex; gap:12px; flex-wrap:wrap; margin-bottom:12px; align-items:center;">
@@ -1211,27 +1258,27 @@
                     </div>
 
                     <div class="symptom-grid" id="symptomGrid">
-                        <label><input type="checkbox" value="cramps" /> Спазмы</label>
-                        <label><input type="checkbox" value="headache" /> Головная боль</label>
-                        <label><input type="checkbox" value="bloating" /> Вздутие</label>
-                        <label><input type="checkbox" value="tired" /> Усталость</label>
-                        <label><input type="checkbox" value="acne" /> Прыщи</label>
-                        <label><input type="checkbox" value="breast" /> Боль в груди</label>
-                        <label><input type="checkbox" value="nausea" /> Тошнота</label>
-                        <label><input type="checkbox" value="dizziness" /> Головокружение</label>
-                        <label><input type="checkbox" value="appetite" /> Повышенный аппетит</label>
-                        <label><input type="checkbox" value="moodSwings" /> Перепады настроения</label>
-                        <label><input type="checkbox" value="insomnia" /> Бессонница 🌙</label>
-                        <label><input type="checkbox" value="backPain" /> Боль в спине</label>
-                        <label><input type="checkbox" value="fatigue" /> Сильная утомляемость</label>
-                        <label><input type="checkbox" value="smell" /> Чувствительность к запахам</label>
-                        <label><input type="checkbox" value="constipation" /> Запор</label>
-                        <label><input type="checkbox" value="itching" /> Зуд во влагалище 🤚</label>
-                        <label><input type="checkbox" value="dryness" /> Сухость во влагалище 🏜️</label>
-                        <label><input type="checkbox" value="allOk" /> Всё в порядке ✅</label>
+                        <label><input type="checkbox" value="cramps" /> 💢 Спазмы</label>
+                        <label><input type="checkbox" value="headache" /> 🤕 Головная боль</label>
+                        <label><input type="checkbox" value="bloating" /> 💨 Вздутие</label>
+                        <label><input type="checkbox" value="tired" /> 😴 Усталость</label>
+                        <label><input type="checkbox" value="acne" /> 🔴 Прыщи</label>
+                        <label><input type="checkbox" value="breast" /> 💔 Боль в груди</label>
+                        <label><input type="checkbox" value="nausea" /> 🤢 Тошнота</label>
+                        <label><input type="checkbox" value="dizziness" /> 😵 Головокружение</label>
+                        <label><input type="checkbox" value="appetite" /> 🍽️ Аппетит</label>
+                        <label><input type="checkbox" value="moodSwings" /> 🎭 Перепады</label>
+                        <label><input type="checkbox" value="insomnia" /> 🌙 Бессонница</label>
+                        <label><input type="checkbox" value="backPain" /> 🔥 Боль в спине</label>
+                        <label><input type="checkbox" value="fatigue" /> 😩 Утомляемость</label>
+                        <label><input type="checkbox" value="smell" /> 👃 Запахи</label>
+                        <label><input type="checkbox" value="constipation" /> 🚽 Запор</label>
+                        <label><input type="checkbox" value="itching" /> 🤚 Зуд</label>
+                        <label><input type="checkbox" value="dryness" /> 🏜️ Сухость</label>
+                        <label><input type="checkbox" value="allOk" /> ✅ Всё в порядке</label>
                     </div>
 
-                    <!-- Вагинальные выделения -->
+                    <!-- Выделения -->
                     <div style="margin-bottom:18px;">
                         <label style="font-size:0.9rem; font-weight:500; display:block; margin-bottom:8px; color:var(--text-secondary);">💧 Выделения:</label>
                         <div class="discharge-grid" id="dischargeGrid">
@@ -1258,10 +1305,10 @@
                     <div id="dailyStatus" class="status"></div>
                 </section>
 
-                <!-- 2. Статистика -->
+                <!-- 2. Статистика (с эмодзи в топе симптомов) -->
                 <section id="section-stats" class="card fade-in hidden">
                     <h2 class="card-title">📊 Статистика цикла</h2>
-                    <div class="stats-grid" id="statsGrid">
+                    <div class="stats-grid" id="statsGrid" style="margin-bottom:16px;">
                         <div class="stat-item">
                             <div class="stat-value" id="statCycleLength">--</div>
                             <span class="stat-label">Дней цикла</span>
@@ -1279,11 +1326,51 @@
                             <span class="stat-label">Средняя длина</span>
                         </div>
                     </div>
+
+                    <div class="stats-grid" style="margin-bottom:16px;">
+                        <div class="stat-item">
+                            <div class="stat-value" id="statMinCycle">--</div>
+                            <span class="stat-label">Мин. длина</span>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="statMaxCycle">--</div>
+                            <span class="stat-label">Макс. длина</span>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="statDaysToOvulation">--</div>
+                            <span class="stat-label">Дней до овуляции</span>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="statRegularity">--</div>
+                            <span class="stat-label">Регулярность</span>
+                            <span id="regularityIndicator" class="stat-indicator green"></span>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom:16px; padding:12px; background:rgba(255,255,255,0.03); border-radius:16px; border:1px solid var(--glass-border);">
+                        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
+                            <span style="font-weight:500; color:var(--text-secondary);">📅 Прогноз следующей менструации:</span>
+                            <span id="nextPeriodPrediction" style="font-weight:600; color:var(--primary-light);">--</span>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom:16px; padding:12px; background:rgba(255,255,255,0.03); border-radius:16px; border:1px solid var(--glass-border);">
+                        <div style="font-weight:500; color:var(--text-secondary); margin-bottom:8px;">📋 Частые симптомы (за 30 дней):</div>
+                        <div id="topSymptoms" style="display:flex; flex-wrap:wrap; gap:8px;">
+                            <span style="color:var(--text-secondary);">Нет данных</span>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom:16px; padding:12px; background:rgba(255,255,255,0.03); border-radius:16px; border:1px solid var(--glass-border);">
+                        <div style="font-weight:500; color:var(--text-secondary); margin-bottom:12px;">😊 Распределение настроения (за 30 дней):</div>
+                        <div id="moodChart" style="display:flex; justify-content:center; gap:16px; flex-wrap:wrap;"></div>
+                    </div>
+
                     <button class="btn-secondary btn-sm" id="resetCycleBtn" style="margin-top:16px;">Сбросить данные</button>
                     <div id="statsStatus" class="status"></div>
                 </section>
 
-                <!-- 3. Советы -->
+                <!-- 3. Советы (без изменений) -->
                 <section id="section-tips" class="card fade-in hidden">
                     <h2 class="card-title">💡 Советы для вас</h2>
                     <div class="tips-container" id="tipsContainer">
@@ -1300,13 +1387,11 @@
                 <!-- 4. Календарь цикла -->
                 <section id="section-calendar" class="card fade-in hidden">
                     <h2 class="card-title">📅 Календарь цикла</h2>
-
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:8px;">
                         <button class="btn-secondary btn-sm" id="invitePartnerBtn">👫 Пригласить партнёра</button>
                         <button class="btn-secondary btn-sm" id="switchViewBtn" style="display:none;">🔄 Переключить просмотр</button>
                         <span id="partnerStatus" style="font-size:0.8rem; color:var(--text-secondary);"></span>
                     </div>
-
                     <div class="calendar-header">
                         <button id="prevMonthBtn">◀</button>
                         <span class="month-label" id="monthLabel">Май 2026</span>
@@ -1328,14 +1413,12 @@
                 <!-- 5. Мигрень -->
                 <section id="section-migraine" class="card fade-in hidden">
                     <h2 class="card-title">🧠 Календарь мигрени</h2>
-
                     <div style="display:flex; gap:12px; flex-wrap:wrap; margin-bottom:12px; align-items:center;">
                         <label style="display:flex; align-items:center; gap:6px; font-size:0.9rem;">
                             <span>📅 Дата:</span>
                             <input type="date" id="migraineDate" style="background:var(--card-bg); border:1px solid var(--glass-border); border-radius:12px; padding:6px 12px; color:var(--text); font-size:0.9rem;" />
                         </label>
                     </div>
-
                     <div class="calendar-header">
                         <button id="prevMonthMigraineBtn">◀</button>
                         <span class="month-label" id="monthMigraineLabel">Май 2026</span>
@@ -1346,7 +1429,6 @@
                         <span class="legend-item"><span class="color-box migraine-no"></span> Нет мигрени</span>
                         <span class="legend-item"><span class="color-box migraine-yes"></span> Была мигрень</span>
                     </div>
-
                     <div class="migraine-form">
                         <h3 style="color:var(--primary-light); margin-top:8px;">Отметить мигрень за выбранную дату</h3>
                         <div class="form-row">
@@ -1376,7 +1458,7 @@
                     </div>
                 </section>
 
-                <!-- 6. Админ -->
+                <!-- 6. Админ (с эмодзи симптомов) -->
                 <section id="section-admin" class="card fade-in hidden">
                     <h2 class="card-title">🔐 Админ-панель</h2>
                     <div id="adminContent">
@@ -1414,13 +1496,13 @@
         </div><!-- /mainApp -->
 
         <!-- ===== МОДАЛЬНЫЕ ОКНА ===== -->
-        <!-- Настройки -->
         <div id="settingsModal" class="modal-overlay hidden">
             <div class="modal-box">
                 <h2>⚙️ Настройки</h2>
                 <div class="form-group">
                     <label for="periodLength">Длительность месячных (дней)</label>
                     <input type="number" id="periodLength" value="5" min="3" max="8" />
+                    <span style="font-size:0.8rem; color:var(--text-secondary);">Длительность используется для расчёта фаз и подсветки календаря.</span>
                 </div>
                 <div class="form-group">
                     <label for="cycleLengthSetting">Длительность цикла (дней)</label>
@@ -1440,7 +1522,6 @@
             </div>
         </div>
 
-        <!-- Приглашение партнёра -->
         <div id="inviteModal" class="modal-overlay hidden">
             <div class="modal-box">
                 <h2>👫 Пригласить партнёра</h2>
@@ -1492,8 +1573,7 @@
             collection,
             query,
             where,
-            getDocs,
-            deleteField
+            getDocs
         } from 'firebase/firestore';
 
         // ================================================================
@@ -1512,6 +1592,59 @@
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
+
+        // ================================================================
+        // ЭМОДЗИ ДЛЯ СИМПТОМОВ (ГЛОБАЛЬНЫЙ ОБЪЕКТ)
+        // ================================================================
+        const SYMPTOM_EMOJIS = {
+            'cramps': '💢',
+            'headache': '🤕',
+            'bloating': '💨',
+            'tired': '😴',
+            'acne': '🔴',
+            'breast': '💔',
+            'nausea': '🤢',
+            'dizziness': '😵',
+            'appetite': '🍽️',
+            'moodSwings': '🎭',
+            'insomnia': '🌙',
+            'backPain': '🔥',
+            'fatigue': '😩',
+            'smell': '👃',
+            'constipation': '🚽',
+            'itching': '🤚',
+            'dryness': '🏜️',
+            'allOk': '✅'
+        };
+
+        // ЧЕЛОВЕЧЕСКИЕ НАЗВАНИЯ СИМПТОМОВ (без эмодзи)
+        const SYMPTOM_NAMES = {
+            'cramps': 'Спазмы',
+            'headache': 'Головная боль',
+            'bloating': 'Вздутие',
+            'tired': 'Усталость',
+            'acne': 'Прыщи',
+            'breast': 'Боль в груди',
+            'nausea': 'Тошнота',
+            'dizziness': 'Головокружение',
+            'appetite': 'Аппетит',
+            'moodSwings': 'Перепады',
+            'insomnia': 'Бессонница',
+            'backPain': 'Боль в спине',
+            'fatigue': 'Утомляемость',
+            'smell': 'Запахи',
+            'constipation': 'Запор',
+            'itching': 'Зуд',
+            'dryness': 'Сухость',
+            'allOk': 'Всё в порядке'
+        };
+
+        // ФУНКЦИЯ ДЛЯ ОТОБРАЖЕНИЯ СИМПТОМА С ЭМОДЗИ
+        function formatSymptom(key) {
+            const emoji = SYMPTOM_EMOJIS[key] || '';
+            const name = SYMPTOM_NAMES[key] || key;
+            return `${emoji} ${name}`.trim();
+        }
 
         // ================================================================
         // БАЗА СОВЕТОВ (расширенная, 30+ на категорию)
@@ -1734,7 +1867,7 @@
         };
 
         // ================================================================
-        // ОСНОВНОЙ КЛАСС ПРИЛОЖЕНИЯ
+        // ОСНОВНОЙ КЛАСС ПРИЛОЖЕНИЯ (с эмодзи везде)
         // ================================================================
         class App {
             constructor() {
@@ -1816,6 +1949,14 @@
                     statNextPeriod: document.getElementById('statNextPeriod'),
                     statPeriodCount: document.getElementById('statPeriodCount'),
                     statAvgCycle: document.getElementById('statAvgCycle'),
+                    statMinCycle: document.getElementById('statMinCycle'),
+                    statMaxCycle: document.getElementById('statMaxCycle'),
+                    statDaysToOvulation: document.getElementById('statDaysToOvulation'),
+                    statRegularity: document.getElementById('statRegularity'),
+                    regularityIndicator: document.getElementById('regularityIndicator'),
+                    nextPeriodPrediction: document.getElementById('nextPeriodPrediction'),
+                    topSymptoms: document.getElementById('topSymptoms'),
+                    moodChart: document.getElementById('moodChart'),
                     resetCycleBtn: document.getElementById('resetCycleBtn'),
                     statsStatus: document.getElementById('statsStatus'),
 
@@ -1910,6 +2051,7 @@
                                 this.checkDailyLog();
                                 this.checkDelay();
                                 if (this.isAdmin) this.loadAdminData();
+                                this.updateStatsUI();
                             }
                         });
 
@@ -1933,6 +2075,7 @@
                             this.renderMigraineCalendar(this.migraineYear, this.migraineMonth);
                             this.checkDailyLog();
                             this.checkDelay();
+                            this.updateStatsUI();
                         }
                         this.updatePartnerStatus();
 
@@ -2037,10 +2180,11 @@
                 this.els.migraineCustomMed.disabled = this.isPartnerView;
                 this.els.migraineAura.disabled = this.isPartnerView;
                 this.els.migraineNote.disabled = this.isPartnerView;
+                this.updateStatsUI();
             }
 
             // ============================================================
-            // АДМИН
+            // АДМИН (с эмодзи симптомов)
             // ============================================================
             async loadAdminData() {
                 try {
@@ -2056,6 +2200,8 @@
                         const sexLogs = data.sexLogs || {};
                         const logEntries = Object.entries(logs).slice(-3).reverse();
                         const migraineEntries = Object.entries(migraineLogs).slice(-3).reverse();
+                        const symptomList = (log) => log.symptoms ? log.symptoms.map(s => formatSymptom(s)).join(', ') :
+                            'нет';
                         html += `
                             <div class="admin-user-card">
                                 <div class="user-email">${email}</div>
@@ -2066,7 +2212,7 @@
                                 <div class="user-logs">
                                     <strong>Самочувствие:</strong>
                                     ${logEntries.map(([date, log]) => `
-                                        <div class="log-entry">${date}: настроение ${log.mood || '—'}, симптомы: ${(log.symptoms || []).join(', ') || 'нет'}</div>
+                                        <div class="log-entry">${date}: настроение ${log.mood || '—'}, симптомы: ${symptomList(log)}</div>
                                     `).join('')}
                                     ${Object.keys(logs).length === 0 ? 'Нет записей' : ''}
                                     <br><strong>Мигрень:</strong>
@@ -2119,7 +2265,7 @@
             }
 
             // ============================================================
-            // ЛЕКАРСТВА (показывать поле "Другое")
+            // ЛЕКАРСТВА
             // ============================================================
             setupMedicationCustom() {
                 const select = this.els.migraineMedication;
@@ -2137,11 +2283,10 @@
             // ============================================================
             // ФАЗЫ
             // ============================================================
-            getCyclePhase(date = new Date(), data = null) {
+            getCyclePhase(dateStr, data = null) {
                 const d = data || this.userData;
                 if (!d.lastPeriodStart) return 'unknown';
-                const lastStart = new Date(d.lastPeriodStart + 'T00:00:00');
-                const daysSinceStart = Math.floor((date - lastStart) / (1000 * 60 * 60 * 24));
+                const daysSinceStart = this.daysBetween(d.lastPeriodStart, dateStr);
                 const period = d.periodLength || 5;
                 const cycle = d.cycleLength || 28;
                 if (daysSinceStart < period) return 'менструация';
@@ -2149,6 +2294,12 @@
                 if (daysSinceStart < period + 10) return 'овуляция';
                 if (daysSinceStart < cycle) return 'лютеиновая';
                 return 'premenstrual';
+            }
+
+            daysBetween(startStr, endStr) {
+                const start = new Date(startStr + 'T00:00:00');
+                const end = new Date(endStr + 'T00:00:00');
+                return Math.floor((end - start) / (1000 * 60 * 60 * 24));
             }
 
             getPhaseEmoji(phase) {
@@ -2176,19 +2327,16 @@
             }
 
             // ============================================================
-            // ЗАДЕРЖКА (автоматическая)
+            // ЗАДЕРЖКА
             // ============================================================
             checkDelay() {
-                const phase = this.getCyclePhase();
-                const today = new Date();
-                const todayStr = today.toISOString().split('T')[0];
-                const hasPeriod = this.userData.dailyLogs && this.userData.dailyLogs[todayStr] &&
-                    this.userData.dailyLogs[todayStr].phase === 'менструация';
+                const today = this.getTodayStr();
+                const phase = this.getCyclePhase(today);
+                const hasPeriod = this.userData.dailyLogs && this.userData.dailyLogs[today] &&
+                    this.userData.dailyLogs[today].phase === 'менструация';
 
-                // Если по расчётам уже должна быть менструация, а её нет – задержка
                 if (phase === 'premenstrual' && !hasPeriod && this.userData.lastPeriodStart) {
-                    const lastStart = new Date(this.userData.lastPeriodStart + 'T00:00:00');
-                    const daysSinceStart = Math.floor((today - lastStart) / (1000 * 60 * 60 * 24));
+                    const daysSinceStart = this.daysBetween(this.userData.lastPeriodStart, today);
                     if (daysSinceStart >= this.userData.cycleLength) {
                         this.els.delayBadge.classList.remove('hidden');
                         this.els.delayBadge.textContent = '📌 Задержка ' + (daysSinceStart - this.userData.cycleLength + 1) +
@@ -2199,89 +2347,51 @@
                 this.els.delayBadge.classList.add('hidden');
             }
 
+            getTodayStr() {
+                const d = new Date();
+                const month = String(d.getMonth() + 1).padStart(2, '0');
+                const day = String(d.getDate()).padStart(2, '0');
+                return `${d.getFullYear()}-${month}-${day}`;
+            }
+
             // ============================================================
             // ОБНОВЛЕНИЕ UI
             // ============================================================
             updateUI() {
-                const phase = this.getCyclePhase();
+                const today = this.getTodayStr();
+                const phase = this.getCyclePhase(today);
                 const emoji = this.getPhaseEmoji(phase);
                 const label = this.getPhaseLabel(phase);
                 this.els.phaseDisplay.textContent = `${emoji} ${label}`;
 
                 if (this.userData.lastPeriodStart) {
-                    const today = new Date();
-                    const lastStart = new Date(this.userData.lastPeriodStart + 'T00:00:00');
-                    const days = Math.floor((today - lastStart) / (1000 * 60 * 60 * 24)) + 1;
+                    const days = this.daysBetween(this.userData.lastPeriodStart, today) + 1;
                     this.els.dayDisplay.textContent = `День цикла: ${days}`;
                 } else {
                     this.els.dayDisplay.textContent = 'День цикла: --';
                 }
 
-                this.updateStats();
+                this.updateStatsUI();
                 this.updatePartnerStatus();
                 this.checkDelay();
             }
 
             updateUIWithData(data) {
-                const phase = this.getCyclePhase(new Date(), data);
+                const today = this.getTodayStr();
+                const phase = this.getCyclePhase(today, data);
                 const emoji = this.getPhaseEmoji(phase);
                 const label = this.getPhaseLabel(phase);
                 this.els.phaseDisplay.textContent = `${emoji} ${label}`;
 
                 if (data.lastPeriodStart) {
-                    const today = new Date();
-                    const lastStart = new Date(data.lastPeriodStart + 'T00:00:00');
-                    const days = Math.floor((today - lastStart) / (1000 * 60 * 60 * 24)) + 1;
+                    const days = this.daysBetween(data.lastPeriodStart, today) + 1;
                     this.els.dayDisplay.textContent = `День цикла: ${days}`;
                 } else {
                     this.els.dayDisplay.textContent = 'День цикла: --';
                 }
 
-                this.updateStatsWithData(data);
+                this.updateStatsUIWithData(data);
                 this.checkDelay();
-            }
-
-            updateStats() {
-                const data = this.userData;
-                this.els.statCycleLength.textContent = data.cycleLength || '--';
-                if (data.lastPeriodStart) {
-                    const today = new Date();
-                    const lastStart = new Date(data.lastPeriodStart + 'T00:00:00');
-                    const daysSinceStart = Math.floor((today - lastStart) / (1000 * 60 * 60 * 24));
-                    const daysUntil = data.cycleLength - daysSinceStart;
-                    this.els.statNextPeriod.textContent = daysUntil > 0 ? daysUntil : 'сегодня';
-                } else {
-                    this.els.statNextPeriod.textContent = '--';
-                }
-                this.els.statPeriodCount.textContent = data.cycles?.length || 0;
-                if (data.cycles && data.cycles.length > 0) {
-                    const total = data.cycles.reduce((sum, c) => sum + c.length, 0);
-                    const avg = Math.round(total / data.cycles.length);
-                    this.els.statAvgCycle.textContent = avg;
-                } else {
-                    this.els.statAvgCycle.textContent = '--';
-                }
-            }
-
-            updateStatsWithData(data) {
-                this.els.statCycleLength.textContent = data.cycleLength || '--';
-                if (data.lastPeriodStart) {
-                    const today = new Date();
-                    const lastStart = new Date(data.lastPeriodStart + 'T00:00:00');
-                    const daysSinceStart = Math.floor((today - lastStart) / (1000 * 60 * 60 * 24));
-                    const daysUntil = data.cycleLength - daysSinceStart;
-                    this.els.statNextPeriod.textContent = daysUntil > 0 ? daysUntil : 'сегодня';
-                } else {
-                    this.els.statNextPeriod.textContent = '--';
-                }
-                this.els.statPeriodCount.textContent = data.cycles?.length || 0;
-                if (data.cycles && data.cycles.length > 0) {
-                    const total = data.cycles.reduce((sum, c) => sum + c.length, 0);
-                    const avg = Math.round(total / data.cycles.length);
-                    this.els.statAvgCycle.textContent = avg;
-                } else {
-                    this.els.statAvgCycle.textContent = '--';
-                }
             }
 
             updatePartnerStatus() {
@@ -2294,19 +2404,167 @@
             }
 
             // ============================================================
+            // СТАТИСТИКА (с эмодзи)
+            // ============================================================
+            updateStatsUI() {
+                this.updateStatsUIWithData(this.userData);
+            }
+
+            updateStatsUIWithData(data) {
+                const cycles = data.cycles || [];
+                const cycleLength = data.cycleLength || '--';
+                this.els.statCycleLength.textContent = cycleLength;
+
+                if (data.lastPeriodStart) {
+                    const today = this.getTodayStr();
+                    const daysSinceStart = this.daysBetween(data.lastPeriodStart, today);
+                    const daysUntil = data.cycleLength - daysSinceStart;
+                    this.els.statNextPeriod.textContent = daysUntil > 0 ? daysUntil : 'сегодня';
+                } else {
+                    this.els.statNextPeriod.textContent = '--';
+                }
+
+                this.els.statPeriodCount.textContent = cycles.length || 0;
+
+                if (cycles.length > 0) {
+                    const total = cycles.reduce((sum, c) => sum + c.length, 0);
+                    const avg = Math.round(total / cycles.length);
+                    this.els.statAvgCycle.textContent = avg;
+                } else {
+                    this.els.statAvgCycle.textContent = '--';
+                }
+
+                if (cycles.length > 0) {
+                    const lengths = cycles.map(c => c.length);
+                    const min = Math.min(...lengths);
+                    const max = Math.max(...lengths);
+                    this.els.statMinCycle.textContent = min;
+                    this.els.statMaxCycle.textContent = max;
+                    const diff = max - min;
+                    const indicator = this.els.regularityIndicator;
+                    if (diff <= 3) {
+                        indicator.className = 'stat-indicator green';
+                        this.els.statRegularity.textContent = 'Стабильный';
+                    } else if (diff <= 7) {
+                        indicator.className = 'stat-indicator yellow';
+                        this.els.statRegularity.textContent = 'Умеренный';
+                    } else {
+                        indicator.className = 'stat-indicator red';
+                        this.els.statRegularity.textContent = 'Нестабильный';
+                    }
+                } else {
+                    this.els.statMinCycle.textContent = '--';
+                    this.els.statMaxCycle.textContent = '--';
+                    this.els.regularityIndicator.className = 'stat-indicator green';
+                    this.els.statRegularity.textContent = 'Нет данных';
+                }
+
+                if (data.lastPeriodStart && data.cycleLength) {
+                    const today = this.getTodayStr();
+                    const daysSinceStart = this.daysBetween(data.lastPeriodStart, today);
+                    const ovulationDay = Math.round(data.cycleLength / 2);
+                    const daysToOvulation = ovulationDay - daysSinceStart;
+                    this.els.statDaysToOvulation.textContent = daysToOvulation > 0 ? daysToOvulation : 'сегодня';
+                } else {
+                    this.els.statDaysToOvulation.textContent = '--';
+                }
+
+                if (data.lastPeriodStart && data.cycleLength) {
+                    const today = this.getTodayStr();
+                    const daysSinceStart = this.daysBetween(data.lastPeriodStart, today);
+                    const daysLeft = data.cycleLength - daysSinceStart;
+                    if (daysLeft > 0) {
+                        const nextDate = new Date(today + 'T00:00:00');
+                        nextDate.setDate(nextDate.getDate() + daysLeft);
+                        const month = String(nextDate.getMonth() + 1).padStart(2, '0');
+                        const day = String(nextDate.getDate()).padStart(2, '0');
+                        this.els.nextPeriodPrediction.textContent = `${day}.${month}.${nextDate.getFullYear()}`;
+                    } else {
+                        this.els.nextPeriodPrediction.textContent = 'сегодня';
+                    }
+                } else {
+                    this.els.nextPeriodPrediction.textContent = '--';
+                }
+
+                // Топ-3 симптома за 30 дней (с эмодзи)
+                const last30Days = [];
+                for (let i = 0; i < 30; i++) {
+                    const d = new Date();
+                    d.setDate(d.getDate() - i);
+                    const month = String(d.getMonth() + 1).padStart(2, '0');
+                    const day = String(d.getDate()).padStart(2, '0');
+                    const key = `${d.getFullYear()}-${month}-${day}`;
+                    last30Days.push(key);
+                }
+                const symptomCount = {};
+                last30Days.forEach(date => {
+                    const log = data.dailyLogs && data.dailyLogs[date];
+                    if (log && log.symptoms) {
+                        log.symptoms.forEach(s => {
+                            symptomCount[s] = (symptomCount[s] || 0) + 1;
+                        });
+                    }
+                });
+                const sortedSymptoms = Object.entries(symptomCount).sort((a, b) => b[1] - a[1]);
+                const top3 = sortedSymptoms.slice(0, 3);
+                if (top3.length > 0) {
+                    this.els.topSymptoms.innerHTML = top3.map(([s, count]) =>
+                        `<span style="background:rgba(124,77,255,0.08); padding:4px 12px; border-radius:30px; font-size:0.85rem;">${formatSymptom(s)} (${count} дн.)</span>`
+                    ).join('');
+                } else {
+                    this.els.topSymptoms.innerHTML =
+                    '<span style="color:var(--text-secondary);">Нет данных за последние 30 дней</span>';
+                }
+
+                // Диаграмма настроения
+                const moodCount = {};
+                last30Days.forEach(date => {
+                    const log = data.dailyLogs && data.dailyLogs[date];
+                    if (log && log.mood) {
+                        moodCount[log.mood] = (moodCount[log.mood] || 0) + 1;
+                    }
+                });
+                const moodLabels = {
+                    'great': '😊 Отлично',
+                    'good': '🙂 Хорошо',
+                    'okay': '😐 Нормально',
+                    'bad': '😔 Плохо',
+                    'terrible': '😫 Ужасно'
+                };
+                const totalMood = Object.values(moodCount).reduce((a, b) => a + b, 0);
+                if (totalMood > 0) {
+                    const colors = ['#b388ff', '#7c4dff', '#536dfe', '#f06292', '#e91e63'];
+                    let chartHtml = '';
+                    let i = 0;
+                    for (const [mood, count] of Object.entries(moodCount)) {
+                        const percent = Math.round((count / totalMood) * 100);
+                        chartHtml += `
+                            <div class="bar">
+                                <div class="value">${count}</div>
+                                <div class="fill" style="height:${Math.max(percent, 4)}px; background:${colors[i % colors.length]};"></div>
+                                <div class="label">${moodLabels[mood] || mood}</div>
+                            </div>
+                        `;
+                        i++;
+                    }
+                    this.els.moodChart.innerHTML = chartHtml;
+                } else {
+                    this.els.moodChart.innerHTML = '<span style="color:var(--text-secondary);">Нет данных</span>';
+                }
+            }
+
+            // ============================================================
             // НАЧАЛО МЕСЯЧНЫХ
             // ============================================================
             async startPeriod() {
                 if (this.isPartnerView) return;
-                const dateStr = this.els.dailyDate.value || new Date().toISOString().split('T')[0];
+                const dateStr = this.els.dailyDate.value || this.getTodayStr();
                 this.userData.lastPeriodStart = dateStr;
-                // Добавляем запись о начале месячных
                 this.userData.dailyLogs[dateStr] = {
                     date: dateStr,
                     mood: this.currentMood || 'okay',
                     symptoms: this.selectedSymptoms || [],
                     phase: 'менструация',
-                    delay: false,
                     sex: false,
                     discharge: this.getSelectedDischarge()
                 };
@@ -2316,6 +2574,7 @@
                 this.renderCalendar(this.currentYear, this.currentMonth);
                 this.renderMigraineCalendar(this.migraineYear, this.migraineMonth);
                 this.checkDelay();
+                this.updateStatsUI();
             }
 
             // ============================================================
@@ -2382,15 +2641,12 @@
                     return;
                 }
                 let dateStr = this.els.dailyDate.value;
-                if (!dateStr) dateStr = new Date().toISOString().split('T')[0];
+                if (!dateStr) dateStr = this.getTodayStr();
 
                 const sex = this.els.sexCheck.checked;
                 const discharge = this.getSelectedDischarge();
+                const phase = this.getCyclePhase(dateStr);
 
-                // Определяем фазу для этой даты
-                const phase = this.getCyclePhase(new Date(dateStr + 'T00:00:00'));
-
-                // Если это день начала месячных (по фазе), обновляем lastPeriodStart
                 if (phase === 'менструация' && !this.userData.lastPeriodStart) {
                     this.userData.lastPeriodStart = dateStr;
                 }
@@ -2430,17 +2686,17 @@
                 this.renderCalendar(this.currentYear, this.currentMonth);
                 this.renderMigraineCalendar(this.migraineYear, this.migraineMonth);
                 this.checkDelay();
+                this.updateStatsUI();
             }
 
             checkDailyLog() {
-                const today = new Date().toISOString().split('T')[0];
+                const today = this.getTodayStr();
                 this.els.dailyDate.value = today;
                 if (this.userData.dailyLogs && this.userData.dailyLogs[today]) {
                     this.showStatus(this.els.dailyStatus, '✅ Сегодня уже отмечено!', 'success');
                     const log = this.userData.dailyLogs[today];
                     if (log.sex) this.els.sexCheck.checked = true;
                     if (log.discharge) this.setSelectedDischarge(log.discharge);
-                    // Отмечаем настроение, если было
                     if (log.mood) {
                         const btn = this.els.moodGrid.querySelector(`.mood-btn[data-mood="${log.mood}"]`);
                         if (btn) btn.classList.add('selected');
@@ -2460,8 +2716,8 @@
             // СОВЕТЫ
             // ============================================================
             async refreshTips() {
-                const phase = this.getCyclePhase();
-                const today = new Date().toISOString().split('T')[0];
+                const phase = this.getCyclePhase(this.getTodayStr());
+                const today = this.getTodayStr();
                 const hasDelay = this.userData.delayLogs && this.userData.delayLogs[today];
 
                 this.els.tipsContainer.innerHTML = `
@@ -2531,18 +2787,18 @@
                     html += `<div class="day-cell other-month"><span class="day-number">${prevDate}</span></div>`;
                 }
 
-                const today = new Date();
-                const todayStr = today.toISOString().split('T')[0];
+                const today = this.getTodayStr();
 
                 for (let d = 1; d <= daysInMonth; d++) {
-                    const dateObj = new Date(year, month, d);
-                    const dateStr = dateObj.toISOString().split('T')[0];
-                    const isToday = dateStr === todayStr;
+                    const monthStr = String(month + 1).padStart(2, '0');
+                    const dayStr = String(d).padStart(2, '0');
+                    const dateStr = `${year}-${monthStr}-${dayStr}`;
+                    const isToday = dateStr === today;
 
                     let classes = '';
                     let dotsHtml = '';
 
-                    const phase = this.getPhaseForDate(data, dateObj);
+                    const phase = this.getCyclePhase(dateStr, data);
                     if (phase === 'менструация') classes += 'phase-menstruation';
                     else if (phase === 'фолликулярная') classes += 'phase-follicular';
                     else if (phase === 'овуляция') classes += 'phase-ovulation';
@@ -2586,19 +2842,6 @@
                 });
             }
 
-            getPhaseForDate(data, date) {
-                if (!data.lastPeriodStart) return 'unknown';
-                const lastStart = new Date(data.lastPeriodStart + 'T00:00:00');
-                const daysSinceStart = Math.floor((date - lastStart) / (1000 * 60 * 60 * 24));
-                const period = data.periodLength || 5;
-                const cycle = data.cycleLength || 28;
-                if (daysSinceStart < period) return 'менструация';
-                if (daysSinceStart < period + 7) return 'фолликулярная';
-                if (daysSinceStart < period + 10) return 'овуляция';
-                if (daysSinceStart < cycle) return 'лютеиновая';
-                return 'premenstrual';
-            }
-
             // ============================================================
             // КАЛЕНДАРЬ МИГРЕНИ
             // ============================================================
@@ -2628,13 +2871,13 @@
                     html += `<div class="day-cell other-month"><span class="day-number">${prevDate}</span></div>`;
                 }
 
-                const today = new Date();
-                const todayStr = today.toISOString().split('T')[0];
+                const today = this.getTodayStr();
 
                 for (let d = 1; d <= daysInMonth; d++) {
-                    const dateObj = new Date(year, month, d);
-                    const dateStr = dateObj.toISOString().split('T')[0];
-                    const isToday = dateStr === todayStr;
+                    const monthStr = String(month + 1).padStart(2, '0');
+                    const dayStr = String(d).padStart(2, '0');
+                    const dateStr = `${year}-${monthStr}-${dayStr}`;
+                    const isToday = dateStr === today;
 
                     let classes = '';
                     let dotHtml = '';
@@ -2669,7 +2912,7 @@
             }
 
             // ============================================================
-            // РЕДАКТИРОВАНИЕ ЗАПИСЕЙ (тултип)
+            // РЕДАКТИРОВАНИЕ (с эмодзи симптомов)
             // ============================================================
             openEditTooltip(dateStr, data) {
                 const log = data.dailyLogs && data.dailyLogs[dateStr];
@@ -2695,15 +2938,8 @@
                     <label>Симптомы:</label>
                     <div class="symptom-grid-mini" id="editSymptomGrid">
                         ${['cramps','headache','bloating','tired','acne','breast','nausea','dizziness','appetite','moodSwings','insomnia','backPain','fatigue','smell','constipation','itching','dryness','allOk'].map(s => {
-                            const labels = {
-                                'cramps':'Спазмы','headache':'Головная боль','bloating':'Вздутие','tired':'Усталость',
-                                'acne':'Прыщи','breast':'Боль в груди','nausea':'Тошнота','dizziness':'Головокружение',
-                                'appetite':'Аппетит','moodSwings':'Перепады','insomnia':'Бессонница 🌙','backPain':'Боль в спине',
-                                'fatigue':'Утомляемость','smell':'Запахи','constipation':'Запор','itching':'Зуд 🤚',
-                                'dryness':'Сухость 🏜️','allOk':'Всё в порядке ✅'
-                            };
                             const checked = log && log.symptoms && log.symptoms.includes(s) ? 'checked' : '';
-                            return `<label><input type="checkbox" value="${s}" ${checked} /> ${labels[s] || s}</label>`;
+                            return `<label><input type="checkbox" value="${s}" ${checked} /> ${formatSymptom(s)}</label>`;
                         }).join('')}
                     </div>
                 </div>
@@ -2728,7 +2964,6 @@
                 this.els.editContent.innerHTML = html;
                 this.els.editTooltip.classList.remove('hidden');
 
-                // Обработчики для редактирования
                 document.getElementById('editMoodGrid').querySelectorAll('button').forEach(btn => {
                     btn.addEventListener('click', () => {
                         document.getElementById('editMoodGrid').querySelectorAll('button').forEach(b => b.classList
@@ -2751,8 +2986,7 @@
                         return;
                     }
 
-                    // Обновляем запись
-                    const phase = this.getCyclePhase(new Date(dateStr + 'T00:00:00'));
+                    const phase = this.getCyclePhase(dateStr);
                     this.userData.dailyLogs[dateStr] = {
                         date: dateStr,
                         mood: mood,
@@ -2774,7 +3008,6 @@
                         delete this.userData.dischargeLogs[dateStr];
                     }
 
-                    // Если это первый день цикла
                     if (phase === 'менструация' && !this.userData.lastPeriodStart) {
                         this.userData.lastPeriodStart = dateStr;
                     }
@@ -2786,6 +3019,7 @@
                     this.renderCalendar(this.currentYear, this.currentMonth);
                     this.renderMigraineCalendar(this.migraineYear, this.migraineMonth);
                     this.checkDelay();
+                    this.updateStatsUI();
                 });
 
                 document.getElementById('deleteEditBtn').addEventListener('click', async () => {
@@ -2800,10 +3034,10 @@
                         this.renderCalendar(this.currentYear, this.currentMonth);
                         this.renderMigraineCalendar(this.migraineYear, this.migraineMonth);
                         this.checkDelay();
+                        this.updateStatsUI();
                     }
                 });
 
-                // Закрытие
                 this.els.closeEditBtn.addEventListener('click', () => {
                     this.els.editTooltip.classList.add('hidden');
                 });
@@ -2852,7 +3086,6 @@
                 this.els.editContent.innerHTML = html;
                 this.els.editTooltip.classList.remove('hidden');
 
-                // Показывать поле "Другое"
                 const medSelect = document.getElementById('editMigraineMed');
                 const customInput = document.getElementById('editMigraineCustom');
                 medSelect.addEventListener('change', () => {
@@ -2895,6 +3128,7 @@
                     this.els.editTooltip.classList.add('hidden');
                     this.renderMigraineCalendar(this.migraineYear, this.migraineMonth);
                     this.renderCalendar(this.currentYear, this.currentMonth);
+                    this.updateStatsUI();
                 });
 
                 document.getElementById('deleteMigraineEditBtn').addEventListener('click', async () => {
@@ -2905,6 +3139,7 @@
                         this.els.editTooltip.classList.add('hidden');
                         this.renderMigraineCalendar(this.migraineYear, this.migraineMonth);
                         this.renderCalendar(this.currentYear, this.currentMonth);
+                        this.updateStatsUI();
                     }
                 });
 
@@ -2919,7 +3154,7 @@
             async saveMigraineLog() {
                 if (this.isPartnerView) return;
                 let dateStr = this.els.migraineDate.value;
-                if (!dateStr) dateStr = new Date().toISOString().split('T')[0];
+                if (!dateStr) dateStr = this.getTodayStr();
 
                 const had = this.els.migraineHad.checked;
                 let medication = this.els.migraineMedication.value;
@@ -2950,6 +3185,7 @@
                 this.els.migraineNote.value = '';
                 this.renderMigraineCalendar(this.migraineYear, this.migraineMonth);
                 this.renderCalendar(this.currentYear, this.currentMonth);
+                this.updateStatsUI();
             }
 
             // ============================================================
@@ -3070,6 +3306,7 @@
                             this.notificationTimers = [];
                         }
                     }
+                    this.updateStatsUI();
                 });
                 this.els.settingsModal.addEventListener('click', (e) => {
                     if (e.target === this.els.settingsModal) this.els.settingsModal.classList.add('hidden');
@@ -3155,6 +3392,7 @@
                         this.renderMigraineCalendar(this.migraineYear, this.migraineMonth);
                         this.checkDailyLog();
                         this.checkDelay();
+                        this.updateStatsUI();
                     } else {
                         if (this.userData.invitedBy) {
                             this.isPartnerView = true;
@@ -3192,6 +3430,7 @@
                         this.renderCalendar(this.currentYear, this.currentMonth);
                         this.renderMigraineCalendar(this.migraineYear, this.migraineMonth);
                         this.checkDelay();
+                        this.updateStatsUI();
                     }
                 });
             }
@@ -3208,7 +3447,9 @@
                         if (target) target.classList.remove('hidden');
 
                         if (sectionId === 'section-tips') this.refreshTips();
-                        if (sectionId === 'section-stats') this.updateStats();
+                        if (sectionId === 'section-stats') {
+                            this.updateStatsUI();
+                        }
                         if (sectionId === 'section-calendar') {
                             this.renderCalendar(this.currentYear, this.currentMonth);
                         }
@@ -3351,17 +3592,8 @@
                 this.els.saveMigraineBtn.addEventListener('click', () => this.saveMigraineLog());
                 this.els.startPeriodBtn.addEventListener('click', () => this.startPeriod());
 
-                this.els.dailyDate.value = new Date().toISOString().split('T')[0];
-                this.els.migraineDate.value = new Date().toISOString().split('T')[0];
-
-                // Закрытие тултипа по клику вне
-                document.addEventListener('click', (e) => {
-                    if (this.els.editTooltip && !this.els.editTooltip.classList.contains('hidden')) {
-                        if (!this.els.editTooltip.contains(e.target) && e.target !== this.els.calendarGrid) {
-                            // Не закрываем, если клик по календарю
-                        }
-                    }
-                });
+                this.els.dailyDate.value = this.getTodayStr();
+                this.els.migraineDate.value = this.getTodayStr();
             }
         }
 
