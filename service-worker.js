@@ -1,4 +1,4 @@
-const CACHE_NAME = 'victoria-calendar-v4';
+const CACHE_NAME = 'victoria-calendar-v5';
 const ASSETS = [
     '/victoria-calendar/',
     '/victoria-calendar/index.html',
